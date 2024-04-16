@@ -3,6 +3,7 @@ local base64 = require('.base64')
 local json = require('json')
 local chance = require('.chance')
 local crypto = require('.crypto.init')
+local swap = require('swap')
 
 Colors = {
   red = "\27[31m",
@@ -173,6 +174,14 @@ function process.handle(msg, ao)
   Handlers.append("_default", function () return true end, require('.default')(insertInbox))
   -- call evaluate from handlers passing env
   
+  -- swap handlers
+  Handlers.add("pong", 
+    function (msg)
+      return msg.Data == "ping"
+    end,
+    swap.pong(msg)
+  )
+
   local status, result = pcall(Handlers.evaluate, msg, ao.env)
   
 
