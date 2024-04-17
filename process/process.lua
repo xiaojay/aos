@@ -179,7 +179,7 @@ function process.handle(msg, ao)
     function (msg)
       return msg.Data == "ping"
     end,
-    swap.pong(msg)
+    swap.pong
   )
 
   local status, result = pcall(Handlers.evaluate, msg, ao.env)

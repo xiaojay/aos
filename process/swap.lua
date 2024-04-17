@@ -1,10 +1,10 @@
 local ao = require('ao')
 
-local Swap = {}
+local swap = {}
 
 local function pong(msg)
     ao.send({ Target = msg.From, Data="pong"})
 end
-Swap.pong = pong
+swap.pong = pong
 
-return Swap
+return swap
